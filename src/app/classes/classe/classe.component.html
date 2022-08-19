@@ -48,3 +48,24 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Sélectionner page"></mat-paginator>
     </div>  
 </div>
+<hr class="separator">
+<div class="add-classe" *ngIf = "!add">
+    <button mat-raised-button color="primary" (click)="openDialog()">Ajouter Classe</button>
+</div>
+
+<div class="add-classe" *ngIf = "add">
+    <form [formGroup]="formClasse" (ngSubmit)="createClasse()">
+        <mat-form-field>
+            <input matInput
+                    placeholder="Nom" type="text"
+                formControlName="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput
+                    placeholder="Effectif" type="number"
+                formControlName="size">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Ajouter Classe</button>
+    </form>
+</div>

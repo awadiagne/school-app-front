@@ -1,1 +1,16 @@
-<p>classe-details works!</p>
+<div class="edit-classe">
+    <form [formGroup]="formClasse" (ngSubmit)="editClasse()">
+        <mat-form-field>
+            <input matInput
+                    placeholder="Nom" type="text" [(ngModel)]="name"
+                formControlName="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput
+                    placeholder="Effectif" type="number" [(ngModel)]="size"
+                formControlName="size">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Modifier Classe</button>
+    </form>
+</div>
