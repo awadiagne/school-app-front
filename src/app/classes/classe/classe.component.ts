@@ -7,6 +7,8 @@ import { ClasseService } from 'src/app/services/classe.service';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationComponent } from 'src/app/shared/notification/notification.component';
 
 @Component({
   selector: 'app-classe',
@@ -27,7 +29,7 @@ export class ClasseComponent implements OnInit {
     size : new FormControl('')
   })
 
-  constructor(private classeService : ClasseService, private router : Router) {}
+  constructor(private classeService : ClasseService, private router : Router, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.classeService.getClasses().subscribe(result => {
@@ -56,20 +58,24 @@ export class ClasseComponent implements OnInit {
     console.log(data);
     this.classeService.createClass({name : data.name, size : data.size}).subscribe(result => {
       console.log(result);
-
+      this.snackBar.openFromComponent(NotificationComponent, {
+        duration: 3000, data : 'Classe créée!'
+      });
       setTimeout(() => {
         this.router.navigate(['/classes']);
       }, 3000);
-      /*this.formClasse = new FormGroup({
-        name : new FormControl(''),
-        size : new FormControl('')
-      });*/
     })
   }
 
-  deleteClass(id) {
+  deleteClass(id : string) {
     this.classeService.deleteClass(id).subscribe(result => {
       console.log(result);
+      this.snackBar.openFromComponent(NotificationComponent, {
+        duration: 3000, data : 'Classe supprimée!'
+      });
+      setTimeout(() => {
+        this.router.navigate(['/classes']);
+      }, 3000);
     })
   }
 

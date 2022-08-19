@@ -28,7 +28,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort'; 
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotificationComponent } from './shared/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ClasseDetailsComponent,
     EleveComponent,
     EleveDetailsComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +64,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
