@@ -31,6 +31,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from './shared/notification/notification.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
     EleveComponent,
     EleveDetailsComponent,
     NotificationComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

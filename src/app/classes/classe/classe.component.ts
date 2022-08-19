@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationComponent } from 'src/app/shared/notification/notification.component';
+import { ConfirmDialogComponent, ConfirmDialogModel } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-classe',
@@ -23,13 +24,14 @@ export class ClasseComponent implements OnInit {
   displayedColumns= ['nom', 'effectif', 'edit', 'delete'];
   add : boolean;
   classes : MatTableDataSource<Classe>;
+  result: string = '';
 
   formClasse = new FormGroup({
     name : new FormControl(''),
     size : new FormControl('')
   })
 
-  constructor(private classeService : ClasseService, private router : Router, private snackBar: MatSnackBar) {}
+  constructor(private classeService : ClasseService, private router : Router, private snackBar: MatSnackBar, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.classeService.getClasses().subscribe(result => {
@@ -77,6 +79,25 @@ export class ClasseComponent implements OnInit {
         this.router.navigate(['/classes']);
       }, 3000);
     })
+  }
+
+  confirmDialog(id): void {
+    const message = `Etes-vous sûr de vouloir supprimer cette classe?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+      console.log(dialogResult);
+      if(dialogResult){
+        this.deleteClass(id);
+      }
+    });
   }
 
   openDialog() {

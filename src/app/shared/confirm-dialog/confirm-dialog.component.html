@@ -1,0 +1,10 @@
+<h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  
+  <div mat-dialog-content>
+    <p>{{message}}</p>
+  </div>
+  
+  <div mat-dialog-actions>
+    <button mat-button (click)="onDismiss()">Annuler</button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">Supprimer</button>
+  </div>
