@@ -21,7 +21,7 @@ export class ClasseComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  displayedColumns= ['nom', 'effectif', 'edit', 'delete'];
+  displayedColumns= ['nom', 'effectif', 'edit', 'delete', 'details'];
   add : boolean;
   classes : MatTableDataSource<Classe>;
   result: string = '';
@@ -82,7 +82,7 @@ export class ClasseComponent implements OnInit {
   }
 
   confirmDialog(id): void {
-    const message = `Etes-vous sûr de vouloir supprimer cette classe?`;
+    const message = `Etes-vous sûr de vouloir supprimer cette classe? Les élèves seront aussi supprimés`;
 
     const dialogData = new ConfirmDialogModel("Confirm Action", message);
 

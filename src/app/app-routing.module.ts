@@ -24,7 +24,7 @@ const routes: Routes = [
     component : EleveComponent
   },
   {
-    path : "eleveDetails/:id",
+    path : "elevesDetails/:id",
     component : EleveDetailsComponent
   },
   {

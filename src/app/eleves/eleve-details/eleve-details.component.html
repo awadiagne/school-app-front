@@ -1,1 +1,20 @@
-<p>eleve-details works!</p>
+<div class="edit-eleve">
+    <form [formGroup]="formEleve" (ngSubmit)="editEleve()">
+        <mat-form-field>
+            <input matInput
+                    placeholder="Nom" type="text" [(ngModel)]="name"
+                formControlName="name">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Classe</mat-label>
+            <select matNativeControl name="classe" formControlName="classe" [(ngModel)]="classe">
+                <option value="" selected></option>
+                <option *ngFor="let classe of classesList" [value]="classe._id">
+                    {{ classe.name }}
+                </option>
+            </select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Modifier Classe</button>
+    </form>
+</div>
